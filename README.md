@@ -53,6 +53,24 @@ The workflow is triggered on pushes to the main branch and consists of two jobs:
 1. **Versioning**: Uses [github-tag-action](https://github.com/anothrNick/github-tag-action) to manage semantic versioning
 2. **Build and Push**: Builds the Docker image and pushes it to Docker Hub with both `latest` and version-specific tags
 
+### Required Permissions
+
+The GitHub Actions workflow requires specific permissions to function correctly:
+
+- **Contents: write** - This permission is needed for the versioning job to create and push tags to the repository. Without this permission, the tag creation will fail with a "Resource not accessible by integration" error.
+
+These permissions are already configured in the workflow file. If you're using a forked repository or creating your own workflow, make sure to include the necessary permissions:
+
+```yaml
+jobs:
+  versioning:
+    permissions:
+      contents: write
+    # rest of the job configuration
+```
+
+Additionally, ensure that your repository settings allow GitHub Actions to create and push tags. Go to your repository's Settings > Actions > General and under "Workflow permissions", select "Read and write permissions".
+
 ### Required Secrets
 
 To use the GitHub Actions workflow, you need to set up the following secrets in your GitHub repository:
