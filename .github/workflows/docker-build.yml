@@ -48,5 +48,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/fastapi-test:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/fastapi-test:${{ needs.versioning.outputs.new_version }}
+#            ${{ secrets.DOCKERHUB_USERNAME }}/fastapi-test:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}//keywealth-hub:fastAPI-test-${{ needs.versioning.outputs.new_version }}
