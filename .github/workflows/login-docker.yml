@@ -8,6 +8,8 @@ jobs:
 
   login-docker:
     runs-on: ubuntu-latest
+    environment: dockerhub
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
