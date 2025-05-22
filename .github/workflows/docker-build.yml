@@ -28,6 +28,7 @@ jobs:
 
   build-and-push:
     needs: versioning
+    environment: dockerhub
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -48,4 +49,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}//keywealth-hub:fastAPI-test-${{ needs.versioning.outputs.new_version }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/keywealth-hub:fastAPI-test-${{ needs.versioning.outputs.new_version }}
