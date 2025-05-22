@@ -22,11 +22,15 @@ jobs:
       - name: Bump version and push tag
         id: versioning
         uses: mathieudutour/github-tag-action@v6.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: true
-          DEFAULT_BUMP: patch
-          INITIAL_VERSION: 1.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_bump: patch
+          default_prerelease_bump: prerelease
+          tag_prefix: v
+          release_branches: master,main
+          create_annotated_tag: false
+          fetch_all_tags: false
+          dry_run: false
 
   build-and-push:
     needs: versioning
