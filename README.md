@@ -38,6 +38,34 @@ docker build -t fastapi-test .
 docker run -p 8000:8000 fastapi-test
 ```
 
+## Docker Compose
+
+### Running with Docker Compose
+```
+docker-compose up
+```
+
+This will build the image if it doesn't exist and start the container. The application will be available at http://localhost:8000.
+
+### Running in Detached Mode
+```
+docker-compose up -d
+```
+
+### Stopping the Container
+```
+docker-compose down
+```
+
+### Rebuilding the Image
+```
+docker-compose build
+```
+or
+```
+docker-compose up --build
+```
+
 ## GitHub Actions Workflow
 
 This repository includes a GitHub Actions workflow that:
