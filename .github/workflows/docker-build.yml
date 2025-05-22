@@ -6,11 +6,13 @@ on:
 
 jobs:
   versioning:
+    environment: dockerhub
     runs-on: ubuntu-latest
     permissions:
       contents: write
     outputs:
       new_version: ${{ steps.versioning.outputs.new_version }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
