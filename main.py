@@ -4,6 +4,11 @@ app = FastAPI()
 
 #modifica
 # incremento minor release
+
+# Elenco modifiche in Brach Nuova-funzione
+# prima modifica
+
+
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
