@@ -56,4 +56,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ vars.DOCKER_USERNAME }}/fastAPI-test:v${{ needs.versioning.outputs.tag_name }}
+            ${{ vars.DOCKER_USERNAME }}/fastAPI-test:${{ needs.versioning.outputs.tag_name }}
