@@ -1,0 +1,59 @@
+name: Release to Production
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  versioning:
+    runs-on: ubuntu-latest
+    environment: dockerhub
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - name: Release
+        id: release
+        uses: google-github-actions/release-please-action@v4
+        with:
+          release-type: python
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+          changelog-types: '[{"type":"feat","section":"✨ Features","hidden":false},{"type":"fix","section":"🐛 Bug Fixes","hidden":false},{"type":"chore","section":"🧹 Chores","hidden":true}]'
+          changelog-path: CHANGELOG.md
+          version-file: version.txt
+
+  build-and-push:
+    needs: versioning
+    if: needs.versioning.outputs.release_created == 'true'
+    runs-on: ubuntu-latest
+    environment: dockerhub
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Extract tag name
+        id: extract_tag
+        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ vars.DOCKER_USERNAME }}/fastAPI-test:v${{ needs.versioning.outputs.tag_name }}
