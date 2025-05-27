@@ -8,6 +8,8 @@ app = FastAPI()
 # Elenco modifiche in Brach Nuova-funzione
 # prima modifica
 
+# prova release
+
 
 @app.get("/")
 async def root():
