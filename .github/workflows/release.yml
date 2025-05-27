@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Release
         id: release
-        uses: google-github-actions/release-please-action@v4
+        uses: googleapis/release-please-action@v4
         with:
           release-type: python
           token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
@@ -56,4 +56,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ vars.DOCKER_USERNAME }}/fastAPI-test:${{ needs.versioning.outputs.tag_name }}
+            ${{ vars.DOCKERHUB_USERNAME }}/fastAPI-test:${{ needs.versioning.outputs.tag_name }}
