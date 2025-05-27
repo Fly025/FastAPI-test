@@ -56,4 +56,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ vars.DOCKERHUB_USERNAME }}/fastAPI-test:${{ needs.versioning.outputs.tag_name }}
+            ${{ vars.DOCKERHUB_USERNAME }}/fastapi-test:latest
+            ${{ vars.DOCKERHUB_USERNAME }}/fastapi-test:${{ needs.versioning.outputs.tag_name }}
