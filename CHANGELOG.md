@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.4](https://github.com/Fly025/FastAPI-test/compare/v1.1.3...v1.1.4) (2025-05-27)
+
+
+### Bug Fixes
+
+* **main:** Action Release fix3 ([8752126](https://github.com/Fly025/FastAPI-test/commit/8752126a664c57435d88bf7c4fa9eedf7d3539e2))
+
 ## [1.1.3](https://github.com/Fly025/FastAPI-test/compare/v1.1.2...v1.1.3) (2025-05-27)
 
 
